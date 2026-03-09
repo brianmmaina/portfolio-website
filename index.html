@@ -10,7 +10,7 @@
     <title>Brian Mmaina | Portfolio</title>
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
-  <body>
+  <body data-api-base-url="">
     <header class="top-nav">
       <a class="brand" href="#home">Brian Mmaina</a>
       <nav>
@@ -26,7 +26,7 @@
         <h1>Building useful software with clean product thinking.</h1>
         <p>
           Vanilla HTML, CSS, and JavaScript portfolio hosted on Vercel, with a
-          backend planned on Railway and Supabase.
+          backend on Railway and Supabase.
         </p>
         <div class="hero-actions">
           <a class="btn primary" href="#projects">View Projects</a>
@@ -52,7 +52,7 @@
 
       <section id="contact" class="panel">
         <h2>Contact</h2>
-        <p>This form will connect to Railway + Supabase in the next step.</p>
+        <p>Send a message directly through the live Railway + Supabase backend.</p>
         <form id="contact-form" class="contact-form" novalidate>
           <label for="name">Name</label>
           <input id="name" name="name" type="text" required />
@@ -62,6 +62,16 @@
 
           <label for="message">Message</label>
           <textarea id="message" name="message" rows="5" required></textarea>
+
+          <label class="visually-hidden" for="website">Leave this empty</label>
+          <input
+            class="visually-hidden"
+            id="website"
+            name="website"
+            type="text"
+            autocomplete="off"
+            tabindex="-1"
+          />
 
           <button class="btn primary" type="submit">Send</button>
           <p id="form-note" class="form-note" aria-live="polite"></p>

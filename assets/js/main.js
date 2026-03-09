@@ -1,4 +1,4 @@
-const projects = [
+const fallbackProjects = [
   {
     title: "TriLive",
     description:
@@ -26,7 +26,7 @@ const projects = [
   }
 ];
 
-function renderProjects() {
+function renderProjects(projects) {
   const grid = document.getElementById("project-grid");
   if (!grid) return;
 
@@ -46,15 +46,77 @@ function renderProjects() {
     .join("");
 }
 
-function attachContactPlaceholder() {
+async function fetchProjects() {
+  const apiBaseUrl = document.body.dataset.apiBaseUrl || "";
+  if (!apiBaseUrl) {
+    return fallbackProjects;
+  }
+
+  try {
+    const response = await fetch(`${apiBaseUrl}/api/projects`);
+    if (!response.ok) {
+      throw new Error("Could not load projects");
+    }
+
+    const projects = await response.json();
+    if (!Array.isArray(projects) || projects.length === 0) {
+      return fallbackProjects;
+    }
+
+    return projects.map((project) => ({
+      title: project.title,
+      description: project.description,
+      stack: Array.isArray(project.stack) ? project.stack : [],
+      status: project.status || "Live"
+    }));
+  } catch (error) {
+    console.error(error);
+    return fallbackProjects;
+  }
+}
+
+function attachContactHandler() {
   const form = document.getElementById("contact-form");
   const note = document.getElementById("form-note");
   if (!form || !note) return;
 
-  form.addEventListener("submit", (event) => {
+  form.addEventListener("submit", async (event) => {
     event.preventDefault();
-    note.textContent =
-      "Form capture is planned for Railway + Supabase integration.";
+    const apiBaseUrl = document.body.dataset.apiBaseUrl || "";
+    if (!apiBaseUrl) {
+      note.textContent = "Add your Railway API URL in index.html to enable this form.";
+      return;
+    }
+
+    const formData = new FormData(form);
+    const payload = {
+      name: String(formData.get("name") || "").trim(),
+      email: String(formData.get("email") || "").trim(),
+      message: String(formData.get("message") || "").trim(),
+      website: String(formData.get("website") || "").trim()
+    };
+
+    note.textContent = "Sending...";
+
+    try {
+      const response = await fetch(`${apiBaseUrl}/api/contact`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (!response.ok) {
+        throw new Error("Could not send message");
+      }
+
+      form.reset();
+      note.textContent = "Message sent. Thanks for reaching out.";
+    } catch (error) {
+      console.error(error);
+      note.textContent = "Could not send message right now. Please try again.";
+    }
   });
 }
 
@@ -64,6 +126,11 @@ function setYear() {
   yearEl.textContent = String(new Date().getFullYear());
 }
 
-renderProjects();
-attachContactPlaceholder();
-setYear();
+async function initialize() {
+  const projects = await fetchProjects();
+  renderProjects(projects);
+  attachContactHandler();
+  setYear();
+}
+
+initialize();

@@ -166,6 +166,14 @@ main {
   color: var(--muted);
 }
 
+.visually-hidden {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 .footer {
   text-align: center;
   color: var(--muted);
