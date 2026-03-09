@@ -32,6 +32,18 @@ router.get("/", async (req, res) => {
   return res.json(data);
 });
 
+router.get("/admin", requireAdmin, async (req, res) => {
+  const { data, error } = await adminClient
+    .from("projects")
+    .select("id, slug, title, description, stack, status, featured, sort_order, repo_url, live_url, image_url")
+    .order("sort_order", { ascending: true });
+
+  if (error) {
+    return res.status(500).json({ error: error.message });
+  }
+  return res.json(data);
+});
+
 router.post("/", requireAdmin, async (req, res) => {
   const payload = normalizeProjectPayload(req.body);
   if (!payload.slug || !payload.title || !payload.description) {

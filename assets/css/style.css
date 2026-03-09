@@ -180,6 +180,66 @@ main {
   padding: 0 1rem 2rem;
 }
 
+.muted-text {
+  color: var(--muted);
+}
+
+.admin-hidden {
+  display: none;
+}
+
+.admin-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.admin-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.admin-actions {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.project-list-wrap {
+  margin-top: 1rem;
+}
+
+.admin-project-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.admin-project-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.7rem;
+  align-items: center;
+  background: #0f1723;
+  border: 1px solid #334358;
+  border-radius: 12px;
+  padding: 0.65rem 0.75rem;
+}
+
+.admin-project-item p {
+  margin: 0.2rem 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.admin-row-actions {
+  display: flex;
+  gap: 0.45rem;
+}
+
 @media (max-width: 680px) {
   .top-nav {
     flex-direction: column;

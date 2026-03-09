@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Admin dashboard for portfolio projects." />
+    <title>Portfolio Admin</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body
+    data-api-base-url=""
+    data-supabase-url=""
+    data-supabase-anon-key=""
+  >
+    <header class="top-nav">
+      <a class="brand" href="index.html">Brian Mmaina</a>
+      <nav>
+        <a href="index.html">Back to Site</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="panel">
+        <h1>Admin Dashboard</h1>
+        <p class="muted-text">Sign in to manage featured projects.</p>
+      </section>
+
+      <section id="auth-panel" class="panel">
+        <h2>Sign in</h2>
+        <form id="login-form" class="contact-form" novalidate>
+          <label for="admin-email">Email</label>
+          <input id="admin-email" name="email" type="email" required />
+
+          <label for="admin-password">Password</label>
+          <input id="admin-password" name="password" type="password" required />
+
+          <button class="btn primary" type="submit">Sign in</button>
+          <p id="auth-note" class="form-note" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section id="dashboard-panel" class="panel admin-hidden">
+        <div class="admin-heading">
+          <h2>Projects</h2>
+          <button id="signout-btn" class="btn" type="button">Sign out</button>
+        </div>
+
+        <form id="project-form" class="contact-form" novalidate>
+          <input id="project-id" name="id" type="hidden" />
+
+          <label for="project-slug">Slug</label>
+          <input id="project-slug" name="slug" type="text" required />
+
+          <label for="project-title">Title</label>
+          <input id="project-title" name="title" type="text" required />
+
+          <label for="project-description">Description</label>
+          <textarea id="project-description" name="description" rows="4" required></textarea>
+
+          <label for="project-stack">Stack (comma-separated)</label>
+          <input id="project-stack" name="stack" type="text" />
+
+          <label for="project-status">Status</label>
+          <input id="project-status" name="status" type="text" value="Live" />
+
+          <label for="project-sort-order">Sort order</label>
+          <input id="project-sort-order" name="sort_order" type="number" value="100" />
+
+          <label for="project-repo-url">Repo URL</label>
+          <input id="project-repo-url" name="repo_url" type="url" />
+
+          <label for="project-live-url">Live URL</label>
+          <input id="project-live-url" name="live_url" type="url" />
+
+          <label for="project-image-url">Image URL</label>
+          <input id="project-image-url" name="image_url" type="url" />
+
+          <label class="admin-checkbox" for="project-featured">
+            <input id="project-featured" name="featured" type="checkbox" checked />
+            Featured on homepage
+          </label>
+
+          <div class="admin-actions">
+            <button class="btn primary" type="submit">Save project</button>
+            <button id="reset-form-btn" class="btn" type="button">Reset form</button>
+          </div>
+
+          <p id="project-note" class="form-note" aria-live="polite"></p>
+        </form>
+
+        <div class="project-list-wrap">
+          <h3>Existing projects</h3>
+          <ul id="admin-project-list" class="admin-project-list"></ul>
+        </div>
+      </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="assets/js/admin.js"></script>
+  </body>
+</html>

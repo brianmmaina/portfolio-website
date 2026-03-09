@@ -9,10 +9,12 @@ Simple portfolio website built with standard HTML, CSS, and JavaScript.
 
 ## Current structure
 - `index.html`
+- `admin.html`
 - `assets/css/style.css`
 - `assets/js/main.js`
-- `backend/` (API bootstrap)
-- `supabase/schema.sql` (schema + RLS starter)
+- `assets/js/admin.js`
+- `backend/`
+- `supabase/schema.sql`
 
 ## Backend quick start
 ```bash
@@ -22,26 +24,23 @@ npm install
 npm run dev
 ```
 
-## Supabase quick start
-- Run SQL in `supabase/schema.sql` in the Supabase SQL editor.
-- Add your email to `ADMIN_EMAILS` in `backend/.env`.
-
 ## Frontend API wiring
-- Open `index.html` and set `data-api-base-url` on the `<body>` tag:
-  - Example: `data-api-base-url="https://your-railway-app.up.railway.app"`
-- For local testing, keep backend running on `http://localhost:8080` and set:
+- Open `index.html` and set `data-api-base-url` on the `<body>` tag.
+- For local testing with backend on port 8080:
   - `data-api-base-url="http://localhost:8080"`
 
-## Deploy checklist
-- Railway:
-  - Create service from `backend/`
-  - Add env vars from `backend/.env.example`
-- Vercel:
-  - Deploy project root as static site
-  - Update `index.html` `data-api-base-url` to Railway production URL
-- Supabase:
-  - Run `supabase/schema.sql`
-  - Create at least one featured project row (`featured = true`)
+## Admin dashboard wiring
+- Open `admin.html` and set these `<body>` attributes:
+  - `data-api-base-url`
+  - `data-supabase-url`
+  - `data-supabase-anon-key`
+- Create an admin user in Supabase Auth (email/password).
+- Add that email to `ADMIN_EMAILS` in `backend/.env` (or Railway env vars).
+- Use `admin.html` to create, edit, and delete projects.
+
+## Supabase quick start
+- Run SQL in `supabase/schema.sql` in the Supabase SQL editor.
+- Create at least one project row with `featured = true`.
 
 ## Daily git flow
 ```bash
