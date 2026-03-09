@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Brian Mmaina portfolio website - little big planet inspired."
+    />
+    <title>Brian Mmaina | Portfolio</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <header class="top-nav">
+      <a class="brand" href="#home">Brian Mmaina</a>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main id="home">
+      <section class="hero panel">
+        <p class="pill">LittleBigPlanet Inspired</p>
+        <h1>Building useful software with clean product thinking.</h1>
+        <p>
+          Vanilla HTML, CSS, and JavaScript portfolio hosted on Vercel, with a
+          backend planned on Railway and Supabase.
+        </p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#projects">View Projects</a>
+          <a class="btn" href="#contact">Contact Me</a>
+        </div>
+      </section>
+
+      <section id="about" class="panel">
+        <h2>About</h2>
+        <p>
+          I build practical apps across mobile, web, and backend systems. I
+          care about usability, performance, and maintainable code.
+        </p>
+      </section>
+
+      <section id="projects" class="panel">
+        <div class="section-head">
+          <h2>Featured Projects</h2>
+          <p>TriLive is live here. Other slots are ready for your next drops.</p>
+        </div>
+        <div id="project-grid" class="project-grid"></div>
+      </section>
+
+      <section id="contact" class="panel">
+        <h2>Contact</h2>
+        <p>This form will connect to Railway + Supabase in the next step.</p>
+        <form id="contact-form" class="contact-form" novalidate>
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" required />
+
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" required />
+
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+
+          <button class="btn primary" type="submit">Send</button>
+          <p id="form-note" class="form-note" aria-live="polite"></p>
+        </form>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>© <span id="year"></span> Brian Mmaina</p>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
